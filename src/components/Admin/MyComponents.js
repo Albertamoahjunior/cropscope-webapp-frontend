@@ -19,6 +19,8 @@ export function StandardTextField(props) {
     <TextField
       label= {props.label}
       variant="outlined"
+      mt={props.mt}
+      mb={props.mb}
       sx={{
         "& .MuiInput-root": {
           color: "#000",

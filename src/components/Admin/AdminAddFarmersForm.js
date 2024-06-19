@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { StandardTypography, StandardTextField, StandardButton, TextButton} from './MyComponents';
 
 const AdminAddFarmerForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [location, setLocation] = useState('');
+  const [password, setPassword] = useState('');
+  const [cpassword, setCpassword] = useState('');
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
 
@@ -25,24 +28,28 @@ const AdminAddFarmerForm = () => {
 
   return (
     <div>
-      <h2>Admin Add Farmer</h2>
+      <StandardTypography variant="h3" mt="2rem" mb="2rem">Admin Add Farmer</StandardTypography>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Name:</label>
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+          <StandardTextField label="Name" type="text" mt="1rem" mb="1rem" value={name} onChange={(e) => setName(e.target.value)} required={true} />
         </div>
         <div>
-          <label>Email:</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
+          <StandardTextField label="Email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required={true} />
         </div>
         <div>
-          <label>Location:</label>
-          <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} required />
+          <StandardTextField label="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required={true} />
+        </div>
+        <div>
+          <StandardTextField label="Confirm Password" type="password" value={cpassword} onChange={(e) => setCpassword(e.target.value)} required={true}/>
+        </div>
+        <div>
+          <StandardTextField label="location" type="text" value={location} onChange={(e) => setLocation(e.target.value)} required= {true}/>
         </div>
         {error && <p>{error}</p>}
         {successMessage && <p>{successMessage}</p>}
-        <button type="submit">Add Farmer</button>
+        <StandardButton type="submit">Add Farmer</StandardButton>
       </form>
+      <TextButton href="/admin/dashboard" mt="2rem">Back</TextButton>
     </div>
   );
 };

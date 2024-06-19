@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import {StandardButton, StandardTypography } from './MyComponents';
 
 const AdminFarmersList = () => {
   const [farmers, setFarmers] = useState([]);
@@ -21,7 +22,7 @@ const AdminFarmersList = () => {
 
   return (
     <div>
-      <h2>Admin Farmers List</h2>
+      <StandardTypography variant="h4" mt="2rem" mb="2rem">Admin Farmers List</StandardTypography>
       {error && <p>{error}</p>}
       <ul>
         {farmers.map((farmer) => (
@@ -30,6 +31,9 @@ const AdminFarmersList = () => {
           </li>
         ))}
       </ul>
+      <div>
+        <StandardButton href="/admin/add-farmer">Add Farmer</StandardButton>
+      </div>
     </div>
   );
 };

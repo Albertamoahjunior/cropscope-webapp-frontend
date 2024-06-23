@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from'react-router-dom';
 import { StandardTypography, StandardTextField, StandardButton, TextButton} from './MyComponents';
 
 const AdminAddFarmerForm = () => {
@@ -11,20 +12,40 @@ const AdminAddFarmerForm = () => {
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
 
+  const navigate = useNavigate();
+
+  const adminToken = localStorage.getItem('adminToken');
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/admin/add-farmer`, {
-        name,
-        email,
-        location,
-      });
+    if (password!== cpassword) {
+      alert('Passwords do not match');
+    } else {
+       try {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/admin/add-farmer`, 
+        {
+        fullName:name,
+        email: email,
+        location: location,
+        password:  password,
+      },
+      {
+        headers: {
+          'x-auth-token': adminToken, // Use x-auth-token header for the JWT token
+        },
+      }
+    );
       setSuccessMessage(`Farmer added successfully with ID: ${response.data.id}`);
       setError(null);
     } catch (error) {
       setError('Error adding farmer');
     }
+    }
   };
+
+  const back = () => {
+    navigate('/');
+  }
 
   return (
     <div>
@@ -49,7 +70,7 @@ const AdminAddFarmerForm = () => {
         {successMessage && <p>{successMessage}</p>}
         <StandardButton type="submit">Add Farmer</StandardButton>
       </form>
-      <TextButton href="/admin/dashboard" mt="2rem">Back</TextButton>
+      <TextButton onClick={back} mt="2rem">Back</TextButton>
     </div>
   );
 };

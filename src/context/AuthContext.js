@@ -1,4 +1,5 @@
-import React, { createContext, useState, useEffect } from 'react';
+
+import React, { createContext, useState} from 'react'; //I removed useEffect
 import axios from 'axios';
 
 export const AuthContext = createContext();
@@ -8,49 +9,53 @@ const AuthContextProvider = (props) => {
   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState(false);
   const [authError, setAuthError] = useState(null);
 
-  useEffect(() => {
-    const checkAdminAuthentication = async () => {
-      const token = localStorage.getItem('adminToken');
-      if (token) {
-        try {
-          const response = await axios.get(`${process.env.REACT_APP_API_URL}/auth/check-auth`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          if (response.data.success) {
-            setToken(token);
-            setIsAdminAuthenticated(true);
-          } else {
-            localStorage.removeItem('adminToken');
-          }
-        } catch (error) {
-          console.error('Error checking admin authentication:', error);
-        }
-      }
-    };
+  // useEffect(() => {
+  //   const checkAdminAuthentication = async () => {
+  //     const token = localStorage.getItem('adminToken');
+  //     if (token) {
+  //       try {
+  //         const response = await axios.get(`${process.env.REACT_APP_API_URL}/admin/check-auth`, {
+  //           headers: {
+  //             "x-auth-token": token,
+  //           },
+  //         });
+  //         if (response.data.success) {
+  //           setToken(token);
+  //           setIsAdminAuthenticated(true);
+  //           console.log("hey")
+  //         } else {
+  //           localStorage.removeItem('adminToken');
+  //           console.log("hi");
+  //         }
+  //       } catch (error) {
+  //         console.error('Error checking admin authentication:', error);
+  //       }
+  //     }
+  //   };
 
-    checkAdminAuthentication();
-  }, []);
+  //   checkAdminAuthentication();
+  // }, []);
 
   const adminSignup = async (email, password) => {
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/signup`, {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/admin/signup`, {
         email,
         password,
       });
       setToken(response.data.token);
       setIsAdminAuthenticated(true);
       setAuthError(null);
-      localStorage.setItem('adminToken', response.data.token);
+      localStorage.setItem('adminToken', token);
+      return true;
     } catch (error) {
       setAuthError('Error signing up');
+      return false;
     }
   };
 
   const adminLogin = async (email, password) => {
     try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/auth/login`, {
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/admin/login`, {
         email,
         password,
       });
@@ -58,8 +63,10 @@ const AuthContextProvider = (props) => {
       setIsAdminAuthenticated(true);
       setAuthError(null);
       localStorage.setItem('adminToken', response.data.token);
+      return true;
     } catch (error) {
       setAuthError('Invalid credentials');
+      return false;
     }
   };
 
@@ -67,11 +74,11 @@ const AuthContextProvider = (props) => {
     localStorage.removeItem('adminToken');
     setIsAdminAuthenticated(false);
     setToken(null);
-  };
+  }
 
   const adminResetPassword = async (email) => {
     try {
-      await axios.post(`${process.env.REACT_APP_API_URL}/auth/reset-password`, { email });
+      await axios.post(`${process.env.REACT_APP_API_URL}/admin/forgot-password`, { email });
       setAuthError(null);
     } catch (error) {
       setAuthError('Error resetting password');
@@ -96,3 +103,4 @@ const AuthContextProvider = (props) => {
 };
 
 export default AuthContextProvider;
+

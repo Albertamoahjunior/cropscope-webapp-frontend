@@ -1,11 +1,12 @@
-import React  from 'react';
-import {Navigate} from 'react-router-dom';
+import React from 'react';
+import { useContext } from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 
-//modified to allow everything
-//remember to change the false value from children to navigate
-const PrivateRoute = ({ auth: { isAuthenticated }, children }) => {
-  return isAuthenticated ? children : <Navigate to="/admin/login" />;
+const PrivateRoute = () => {
+  const { isAdminAuthenticated } = useContext(AuthContext);
+
+  return isAdminAuthenticated ? <Outlet /> : <Navigate to="/admin/landing" />;
 };
-
 
 export default PrivateRoute;

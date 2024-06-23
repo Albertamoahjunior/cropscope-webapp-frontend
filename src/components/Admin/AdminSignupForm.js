@@ -22,9 +22,6 @@ const AdminSignupForm = () => {
   };
 
 
-
-
-
   return (
     <div className='container' >
       <StandardTypography variant="h2" mb="3rem" mt="3rem">Admin Signup</StandardTypography>

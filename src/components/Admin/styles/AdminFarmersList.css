@@ -1,0 +1,18 @@
+.admin-farmers-list {
+  padding: 20px;
+}
+
+.farmers-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 20px;
+}
+
+.add-farmer-button {
+  margin-top: 20px;
+}

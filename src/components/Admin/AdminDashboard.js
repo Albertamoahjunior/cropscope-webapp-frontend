@@ -1,17 +1,26 @@
 import React, { useContext} from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 //import axios from 'axios';
 import AdminFarmersList from './AdminFarmersList';
 import { TextButton, StandardTypography} from './MyComponents';
 
 const AdminDashboard = () => {
-  const { adminLogout } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { adminLogout, authError } = useContext(AuthContext);
+
+  const handleLogout = () =>{
+    adminLogout();
+    navigate('/admin/landing');
+  }
 
   return (
     <div>
-      <StandardTypography variant="h2" mt="2rem" mb="2rem">Admin Dashboard</StandardTypography>
+      <StandardTypography variant="h2" mt="2rem" mb="0.4rem">Admin Dashboard</StandardTypography>
       <AdminFarmersList />
-      <TextButton onClick={adminLogout}>Logout</TextButton>
+      
+      {authError && <p>{authError}</p>}
+      <TextButton onClick={handleLogout}>Logout</TextButton>
     </div>
   );
 };

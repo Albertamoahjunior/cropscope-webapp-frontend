@@ -7,6 +7,7 @@ const AdminAddFarmerForm = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [location, setLocation] = useState('');
+  const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
   const [cpassword, setCpassword] = useState('');
   const [error, setError] = useState(null);
@@ -28,6 +29,7 @@ const AdminAddFarmerForm = () => {
         email: email,
         location: location,
         password:  password,
+        phone: phone,
       },
       {
         headers: {
@@ -37,6 +39,12 @@ const AdminAddFarmerForm = () => {
     );
       setSuccessMessage(`Farmer added successfully with ID: ${response.data.id}`);
       setError(null);
+      setName('');
+      setEmail('');
+      setLocation('');
+      setPhone('');
+      setPassword('');
+      setCpassword('');
     } catch (error) {
       setError('Error adding farmer');
     }
@@ -65,6 +73,9 @@ const AdminAddFarmerForm = () => {
         </div>
         <div>
           <StandardTextField label="location" type="text" value={location} onChange={(e) => setLocation(e.target.value)} required= {true}/>
+        </div>
+          <div>
+          <StandardTextField label="Phone Number" type="text" value={phone} onChange={(e) => setPhone(e.target.value)} required= {true}/>
         </div>
         {error && <p>{error}</p>}
         {successMessage && <p>{successMessage}</p>}

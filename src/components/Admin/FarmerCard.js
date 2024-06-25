@@ -1,6 +1,7 @@
 import React from 'react';
 import './styles/FarmerCard.css';
 // Import the md5 hashing library
+import { StandardButton, TextButton } from './MyComponents';
 import md5 from 'md5';
 
 // Function to get a Gravatar URL
@@ -17,6 +18,11 @@ const FarmerCard = ({ farmer }) => (
       <p><strong>Name:</strong> {farmer.fullName}</p>
       <p><strong>Email:</strong> {farmer.email}</p>
       <p><strong>Location:</strong> {farmer.location}</p>
+      <p><strong>Phone:</strong> {farmer.phone}</p>
+      <div className="farmer-buttons">
+        <TextButton onClick={() => window.location.href = `/admin/farmer/${farmer._id}/edit`}>Edit</TextButton>
+        <StandardButton onClick={() => window.location.href = `/admin/farmer/${farmer._id}/delete`}>Delete</StandardButton>
+      </div>
     </div>
   </div>
 );

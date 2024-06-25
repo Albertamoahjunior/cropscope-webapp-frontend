@@ -26,3 +26,11 @@
 .farmer-info strong {
   color: #333;
 }
+
+.farmer-buttons{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  width: 170%;
+}

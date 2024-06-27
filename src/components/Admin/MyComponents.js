@@ -3,6 +3,8 @@ import TextField from "@mui/material/TextField";
 import {green} from "@mui/material/colors";
 import { Button } from "@mui/material";
 import Typography from '@mui/material/Typography';
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
 
   const textFieldStyle = { 
     marginLeft: "2rem",
@@ -121,5 +123,43 @@ export function StandardTypography(props) {
     >
       {props.children}
     </Typography>
+  );
+}
+
+export function MenuButton(props) {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <div>
+      <StandardButton
+        id="basic-button"
+        aria-controls={open ? 'basic-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        onClick={handleClick}
+      >
+        {props.title}
+      </StandardButton>
+      <Menu
+        id="basic-menu"
+        anchorEl={anchorEl}
+        open={open}
+        onClose={handleClose}
+        MenuListProps={{
+          'aria-labelledby': 'basic-button',
+        }}
+      >
+        <MenuItem onClick={props.profile}>Profile</MenuItem>
+        <MenuItem onClick={props.addFarmer}>Add Farmer</MenuItem>
+        <MenuItem onClick={props.logout}>Logout</MenuItem>
+      </Menu>
+    </div>
   );
 }

@@ -3,7 +3,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 //import axios from 'axios';
 import AdminFarmersList from './AdminFarmersList';
-import { TextButton, StandardTypography} from './MyComponents';
+import { TextButton, StandardTypography, MenuButton} from './MyComponents';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -14,13 +14,16 @@ const AdminDashboard = () => {
     navigate('/admin/landing');
   }
 
+    const handleAddFarmer = ()  => {
+    navigate('/admin/add-farmer');
+  }
+
   return (
     <div>
       <StandardTypography variant="h2" mt="2rem" mb="0.4rem">Admin Dashboard</StandardTypography>
+      <MenuButton title="Admin" addFarmer={handleAddFarmer} logout={handleLogout}/>
+       {authError && <p>{authError}</p>}
       <AdminFarmersList />
-      
-      {authError && <p>{authError}</p>}
-      <TextButton onClick={handleLogout}>Logout</TextButton>
     </div>
   );
 };

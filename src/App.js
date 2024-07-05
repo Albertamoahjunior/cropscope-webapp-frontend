@@ -10,6 +10,7 @@ import AdminResetPasswordForm from './components/Admin/AdminResetPasswordForm';
 import LandingPage from './components/LandingPage';
 import AdminAddFarmerForm from './components/Admin/AdminAddFarmersForm';
 import AdminResetPasswordPage from './components/Admin/AdminResetPasswordForm';
+import FarmerResetPage from './components/Farmer/ResetPasswordForm'
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
@@ -22,6 +23,7 @@ function App() {
     <AuthContextProvider>
         <Router>
           <Routes>
+            <Route exact path="/farmer/reset-password/:token" element={<FarmerResetPage/>} />
 	          <Route exact path="/admin/landing" element={<LandingPage/>} />
             <Route exact path="/admin/login" element={<AdminLoginForm/>} />
             <Route exact path="/admin/signup" element={<AdminSignupForm/>} />

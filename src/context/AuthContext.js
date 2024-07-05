@@ -85,6 +85,15 @@ const AuthContextProvider = (props) => {
     }
   };
 
+   const farmerResetPassword = async (email) => {
+    try {
+      await axios.post(`${process.env.REACT_APP_API_URL}/farmer/forgot-password`, { email });
+      setAuthError(null);
+    } catch (error) {
+      setAuthError('Error resetting password');
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -95,6 +104,7 @@ const AuthContextProvider = (props) => {
         adminLogin,
         adminLogout,
         adminResetPassword,
+        farmerResetPassword, 
       }}
     >
       {props.children}

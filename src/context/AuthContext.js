@@ -36,22 +36,24 @@ const AuthContextProvider = (props) => {
   //   checkAdminAuthentication();
   // }, []);
 
-  const adminSignup = async (email, password) => {
-    try {
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/admin/signup`, {
-        email,
-        password,
-      });
-      setToken(response.data.token);
-      setIsAdminAuthenticated(true);
-      setAuthError(null);
-      localStorage.setItem('adminToken', token);
-      return true;
-    } catch (error) {
-      setAuthError('Error signing up');
-      return false;
-    }
-  };
+ const adminSignup = async (email, password) => {
+  try {
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}/admin/signup`, {
+      email,
+      password,
+    });
+    const token = response.data.token;  // Get token from response
+    setToken(token);  // Set token using setToken
+    setIsAdminAuthenticated(true);  // Authenticate admin
+    setAuthError(null);  // Clear any previous auth errors
+    localStorage.setItem('adminToken', token);  // Store token in local storage
+    return true;  // Return true on successful signup
+  } catch (error) {
+    setAuthError('Error signing up');  // Set auth error on failure
+    return false;  // Return false on failure
+  }
+};
+
 
   const adminLogin = async (email, password) => {
     try {
@@ -59,10 +61,11 @@ const AuthContextProvider = (props) => {
         email,
         password,
       });
-      setToken(response.data.token);
+      const token = response.data.token;
+      setToken(token);
       setIsAdminAuthenticated(true);
       setAuthError(null);
-      localStorage.setItem('adminToken', response.data.token);
+      localStorage.setItem('adminToken', token);
       return true;
     } catch (error) {
       setAuthError('Invalid credentials');

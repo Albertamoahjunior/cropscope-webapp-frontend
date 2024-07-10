@@ -3,7 +3,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 //import axios from 'axios';
 import AdminFarmersList from './AdminFarmersList';
-import { TextButton, StandardTypography, MenuButton} from './MyComponents';
+import { StandardTypography, MenuButton} from './MyComponents';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();

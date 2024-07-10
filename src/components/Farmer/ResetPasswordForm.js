@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { StandardButton, StandardTextField, StandardTypography } from './MyComponents';
+import { StandardButton, StandardTextField, StandardTypography } from '../Admin/MyComponents';
 import { AuthContext } from '../../context/AuthContext';
 import { Link } from 'react-router-dom';
 

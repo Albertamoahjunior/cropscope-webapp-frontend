@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Link} from 'react-router-dom';
+import { Link, useNavigate} from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 import {StandardTextField, StandardButton, StandardTypography} from './MyComponents'
 
@@ -11,12 +11,21 @@ const AdminSignupForm = () => {
   const [password, setPassword] = useState('');
   const [cpassword, setCpassword] = useState('');
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== cpassword) {
       alert('Passwords do not match');
     }else{
-      adminSignup(email, password);
+      let auth = adminSignup(email, password);
+         auth.then(value => {
+      if (value) {
+        navigate('/');
+      } else {
+        alert('Invalid Credentials');
+      }
+    })
     }
     
   };

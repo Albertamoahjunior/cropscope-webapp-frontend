@@ -54,6 +54,28 @@ const AuthContextProvider = (props) => {
   }
 };
 
+const adminReset = async (password) => {
+  try {
+    await axios.post(`${process.env.REACT_APP_API_URL}/admin/reset-password`, {
+      password,
+    });
+    return 'Password reset successfully';
+  } catch (error) {
+    return 'Error resetting password';
+  }
+}
+
+const farmerReset = async (password) => {
+  try {
+    await axios.post(`${process.env.REACT_APP_API_URL}/admin/reset-password`, {
+      password,
+    });
+    return 'Password reset successfully';
+  } catch (error) {
+    return 'Error resetting password';
+  }
+}
+
 
   const adminLogin = async (email, password) => {
     try {
@@ -108,6 +130,8 @@ const AuthContextProvider = (props) => {
         adminLogout,
         adminResetPassword,
         farmerResetPassword, 
+        farmerReset,
+        adminReset,  
       }}
     >
       {props.children}

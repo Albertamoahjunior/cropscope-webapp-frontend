@@ -4,7 +4,7 @@ import { AuthContext } from '../../context/AuthContext';
 
 
 const FarmerResetForm = () => {
-  const { adminReset, authError } = useContext(AuthContext);
+  const { farmerReset, authError } = useContext(AuthContext);
   const [cpassword, setCpassword] = useState('');
   const [password, setPassword] = useState('');
 
@@ -14,7 +14,12 @@ const FarmerResetForm = () => {
     if(cpassword !== password) {
         alert('Passwords do not match');
       }else{
-        adminReset(password);
+        const resetMessage = farmerReset(password);
+        if(resetMessage === 'Password reset successfully') {
+          alert('Password reset successfully');
+        } else {
+          alert('Error resetting password');
+        }
     }
   };
 

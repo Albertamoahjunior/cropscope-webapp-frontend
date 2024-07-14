@@ -14,7 +14,12 @@ const AdminLoginForm = () => {
     if(cpassword !== password) {
         alert('Passwords do not match');
       }else{
-        adminReset(password);
+        const resetMessage = adminReset(password);
+        if(resetMessage === 'Password reset successfully') {
+          alert('Password reset successfully');
+        } else {
+          alert('Error resetting password');
+        }
     }
   };
 
@@ -23,7 +28,7 @@ const AdminLoginForm = () => {
       <StandardTypography variant="h2" mt="2rem" mb="2rem">New Password</StandardTypography>
       <form onSubmit={handleSubmit}>
         <div>
-          <StandardTextField type="email" label="Password" value={password} onChange={(e) => setPassword(e.target.value)} required={true}/>
+          <StandardTextField type="password" label="Password" value={password} onChange={(e) => setPassword(e.target.value)} required={true}/>
         </div>
         <div>
           <StandardTextField type="password" label="Confirn Password" value={cpassword} onChange={(e) => setCpassword(e.target.value)}  required={true} />

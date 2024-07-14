@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { StandardButton, StandardTextField, StandardTypography } from './MyComponents';
 import { AuthContext } from '../../context/AuthContext';
-import { Link } from 'react-router-dom';
+
 
 const FarmerResetForm = () => {
   const { adminReset, authError } = useContext(AuthContext);
@@ -20,7 +20,7 @@ const FarmerResetForm = () => {
 
   return (
     <div>
-      <StandardTypography variant="h4" mt="2rem" mb="2rem">New Password</StandardTypography>
+      <StandardTypography variant="h4" mt="2rem" mb="6rem">New Password</StandardTypography>
       <form onSubmit={handleSubmit}>
         <div>
           <StandardTextField type="password" label="Password" value={password} onChange={(e) => setPassword(e.target.value)} required={true}/>

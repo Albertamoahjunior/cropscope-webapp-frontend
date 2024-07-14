@@ -9,7 +9,7 @@ import MenuItem from "@mui/material/MenuItem";
   const textFieldStyle = { 
     marginLeft: "2rem",
     marginRight: "2rem",
-    width: "10rem",
+    width: "15rem",
     height: "3rem",
     color:"white",
     justify: "left",
@@ -64,11 +64,11 @@ export function StandardTextField(props) {
   const buttonStyle = {
     marginLeft: "2rem",
     marginRight: "2rem",
-    height: "4rem",
+    height: "3rem",
     color:"white",
     fontSize: "1.4rem",
     justify: "left",
-    width: "5rem",
+    width: "12rem",
   }
 
   const buttonTextStyle = {

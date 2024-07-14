@@ -9,7 +9,7 @@ import AdminSignupForm from './components/Admin/AdminSignupForm';
 import AdminResetPasswordForm from './components/Admin/AdminResetPasswordForm';
 import LandingPage from './components/LandingPage';
 import AdminAddFarmerForm from './components/Admin/AdminAddFarmersForm';
-import AdminResetPasswordPage from './components/Admin/AdminResetPasswordForm';
+import AdminResetPasswordPage from './components/Admin/AdminResetPasswordPage';
 import FarmerResetPage from './components/Farmer/ResetPasswordForm'
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
@@ -24,11 +24,11 @@ function App() {
         <Router>
           <Routes>
             <Route exact path="/farmer/reset-password/:token" element={<FarmerResetPage/>} />
+            <Route exact path="/admin/reset-password/:token" element={<AdminResetPasswordPage/>} />
 	          <Route exact path="/admin/landing" element={<LandingPage/>} />
             <Route exact path="/admin/login" element={<AdminLoginForm/>} />
             <Route exact path="/admin/signup" element={<AdminSignupForm/>} />
             <Route exact path="/admin/forgot-password" element={<AdminResetPasswordForm/>} />
-            <Route exact path="/admin/reset-password/:token" element={<AdminResetPasswordPage/>} />
             <Route path="/" element={<PrivateRoute />}>
               <Route path="/" element={<AdminDashboard />} />
             </Route>

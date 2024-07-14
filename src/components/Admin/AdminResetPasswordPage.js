@@ -5,7 +5,7 @@ import { AuthContext } from '../../context/AuthContext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const AdminLoginForm = () => {
+const AdminResetForm = () => {
   const { adminReset, authError } = useContext(AuthContext);
   const [cpassword, setCpassword] = useState('');
   const [password, setPassword] = useState('');
@@ -54,7 +54,7 @@ const AdminLoginForm = () => {
 
   return (
     <div>
-      <StandardTypography variant="h2" mt="2rem" mb="2rem">New Password</StandardTypography>
+      <StandardTypography variant="h2" mt="2rem" mb="2rem"> Set New Password</StandardTypography>
       <form onSubmit={handleSubmit}>
         <div>
           <StandardTextField type="password" label="Password" value={password} onChange={(e) => setPassword(e.target.value)} required={true}/>
@@ -73,4 +73,4 @@ const AdminLoginForm = () => {
   );
 };
 
-export default AdminLoginForm;
+export default AdminResetForm;

@@ -37,7 +37,7 @@ const AdminLoginForm = () => {
         <Link to="/admin/signup">
           <StandardTypography color="primary" variant="h5" mt="2rem">Don't have an account?</StandardTypography>
         </Link>
-        <Link to="/admin/reset-password">
+        <Link to="/admin/forgot-password">
           <StandardTypography color="primary" variant="h5" mt="0.5rem">Forgot Password</StandardTypography>
         </Link>
       </div>

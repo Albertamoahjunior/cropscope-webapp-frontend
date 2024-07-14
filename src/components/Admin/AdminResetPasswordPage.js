@@ -1,24 +1,52 @@
 import React, { useState, useContext } from 'react';
-import { StandardButton, StandardTextField, StandardTypography } from './MyComponents';
+import { useParams } from 'react-router-dom';
+import { StandardButton, StandardTextField, StandardTypography, TextButton} from './MyComponents';
 import { AuthContext } from '../../context/AuthContext';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AdminLoginForm = () => {
   const { adminReset, authError } = useContext(AuthContext);
   const [cpassword, setCpassword] = useState('');
   const [password, setPassword] = useState('');
+  const {token} = useParams();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if(cpassword !== password) {
-        alert('Passwords do not match');
-      }else{
-        const resetMessage = adminReset(password);
-        if(resetMessage === 'Password reset successfully') {
-          alert('Password reset successfully');
-        } else {
-          alert('Error resetting password');
-        }
+     if (cpassword !== password) {
+      toast.error('Passwords do not match', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      const resetMessage = await adminReset(password, token);
+      if (resetMessage === 'Password reset successfully') {
+        toast.success('Password reset successfully', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else {
+        toast.error('Error resetting password', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
     }
   };
 
@@ -35,6 +63,10 @@ const AdminLoginForm = () => {
         {authError && <p>{authError}</p>}
         <StandardButton type="submit" color="success">Reset</StandardButton>
       </form>
+      <div>
+        <TextButton href="/admin/login"/>
+      </div>
+      <ToastContainer />
     </div>
   );
 };

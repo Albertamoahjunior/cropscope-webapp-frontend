@@ -1,13 +1,15 @@
 import React, { useState, useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import { StandardButton, StandardTextField, StandardTypography } from './MyComponents';
 import { AuthContext } from '../../context/AuthContext';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const AdminLoginForm = () => {
+const FarmerLoginForm = () => {
   const { farmerReset, authError } = useContext(AuthContext);
   const [cpassword, setCpassword] = useState('');
   const [password, setPassword] = useState('');
+  const {token} = useParams();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -23,7 +25,7 @@ const AdminLoginForm = () => {
         progress: undefined,
       });
     } else {
-      const resetMessage = await farmerReset(password);
+      const resetMessage = await farmerReset(password, token);
       if (resetMessage === 'Password reset successfully') {
         toast.success('Password reset successfully', {
           position: "top-right",
@@ -66,4 +68,4 @@ const AdminLoginForm = () => {
   );
 };
 
-export default AdminLoginForm;
+export default FarmerLoginForm;

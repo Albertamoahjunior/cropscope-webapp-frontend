@@ -27,7 +27,7 @@ function App() {
 	          <Route exact path="/admin/landing" element={<LandingPage/>} />
             <Route exact path="/admin/login" element={<AdminLoginForm/>} />
             <Route exact path="/admin/signup" element={<AdminSignupForm/>} />
-            <Route exact path="/admin/reset-password" element={<AdminResetPasswordForm/>} />
+            <Route exact path="/admin/forgot-password" element={<AdminResetPasswordForm/>} />
             <Route exact path="/admin/reset-password/:token" element={<AdminResetPasswordPage/>} />
             <Route path="/" element={<PrivateRoute />}>
               <Route path="/" element={<AdminDashboard />} />

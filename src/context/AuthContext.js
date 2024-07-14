@@ -54,9 +54,9 @@ const AuthContextProvider = (props) => {
   }
 };
 
-const adminReset = async (password) => {
+const adminReset = async (password, token) => {
   try {
-    await axios.post(`${process.env.REACT_APP_API_URL}/admin/reset-password`, {
+    await axios.post(`${process.env.REACT_APP_API_URL}/admin/reset-password/${token}`, {
       password,
     });
     return 'Password reset successfully';
@@ -65,9 +65,9 @@ const adminReset = async (password) => {
   }
 }
 
-const farmerReset = async (password) => {
+const farmerReset = async (password, token) => {
   try {
-    await axios.post(`${process.env.REACT_APP_API_URL}/farmer/reset-password`, {
+    await axios.post(`${process.env.REACT_APP_API_URL}/farmer/reset-password/${token}`, {
       password,
     });
     return 'Password reset successfully';

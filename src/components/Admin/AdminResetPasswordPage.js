@@ -11,6 +11,8 @@ const AdminLoginForm = () => {
   const [password, setPassword] = useState('');
   const {token} = useParams();
 
+  console.log(token)
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 

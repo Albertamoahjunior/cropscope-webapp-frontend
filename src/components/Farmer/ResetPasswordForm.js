@@ -31,9 +31,6 @@ const FarmerResetForm = () => {
         {authError && <p>{authError}</p>}
         <StandardButton type="submit" color="success">Reset</StandardButton>
       </form>
-      <div>
-        <Link to="/"><StandardTypography color="primary" variant="h5" mt="2rem">Back</StandardTypography></Link>
-      </div>
     </div>
   );
 };

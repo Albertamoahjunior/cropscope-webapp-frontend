@@ -9,7 +9,7 @@ import MenuItem from "@mui/material/MenuItem";
   const textFieldStyle = { 
     marginLeft: "2rem",
     marginRight: "2rem",
-    width: "5rem",
+    width: "10rem",
     height: "3rem",
     color:"white",
     justify: "left",

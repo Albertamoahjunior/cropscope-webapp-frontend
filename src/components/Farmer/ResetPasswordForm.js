@@ -14,7 +14,7 @@ const AdminLoginForm = () => {
 
     if (cpassword !== password) {
       toast.error('Passwords do not match', {
-        position: "top-right",
+        position: "center",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -26,7 +26,7 @@ const AdminLoginForm = () => {
       const resetMessage = await adminReset(password);
       if (resetMessage === 'Password reset successfully') {
         toast.success('Password reset successfully', {
-          position: "top-right",
+          position: "center",
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -36,7 +36,7 @@ const AdminLoginForm = () => {
         });
       } else {
         toast.error('Error resetting password', {
-          position: "top-right",
+          position: "center",
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,

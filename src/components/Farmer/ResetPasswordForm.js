@@ -5,7 +5,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const AdminLoginForm = () => {
-  const { adminReset, authError } = useContext(AuthContext);
+  const { farmerReset, authError } = useContext(AuthContext);
   const [cpassword, setCpassword] = useState('');
   const [password, setPassword] = useState('');
 
@@ -14,7 +14,7 @@ const AdminLoginForm = () => {
 
     if (cpassword !== password) {
       toast.error('Passwords do not match', {
-        position: "center",
+        position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
         closeOnClick: true,
@@ -23,10 +23,10 @@ const AdminLoginForm = () => {
         progress: undefined,
       });
     } else {
-      const resetMessage = await adminReset(password);
+      const resetMessage = await farmerReset(password);
       if (resetMessage === 'Password reset successfully') {
         toast.success('Password reset successfully', {
-          position: "center",
+          position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -36,7 +36,7 @@ const AdminLoginForm = () => {
         });
       } else {
         toast.error('Error resetting password', {
-          position: "center",
+          position: "top-right",
           autoClose: 5000,
           hideProgressBar: false,
           closeOnClick: true,

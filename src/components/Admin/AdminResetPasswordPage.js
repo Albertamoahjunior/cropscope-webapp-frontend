@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { StandardButton, StandardTextField, StandardTypography } from './MyComponents';
 import { AuthContext } from '../../context/AuthContext';
-import { Link } from 'react-router-dom';
 
 const AdminLoginForm = () => {
   const { adminReset, authError } = useContext(AuthContext);
@@ -36,9 +35,6 @@ const AdminLoginForm = () => {
         {authError && <p>{authError}</p>}
         <StandardButton type="submit" color="success">Reset</StandardButton>
       </form>
-      <div>
-        <Link to="/"><StandardTypography color="primary" variant="h5" mt="2rem">Back</StandardTypography></Link>
-      </div>
     </div>
   );
 };

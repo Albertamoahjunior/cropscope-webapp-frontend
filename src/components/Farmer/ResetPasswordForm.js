@@ -50,7 +50,7 @@ const AdminLoginForm = () => {
 
   return (
     <div>
-      <StandardTypography variant="h4" mt="2rem" mb="6rem">New Password</StandardTypography>
+      <StandardTypography variant="h4" mt="2rem" mb="6rem">Set New Password</StandardTypography>
       <form onSubmit={handleSubmit}>
         <div>
           <StandardTextField type="password" label="Password" value={password} onChange={(e) => setPassword(e.target.value)} required={true}/>

@@ -1,25 +1,50 @@
 import React, { useState, useContext } from 'react';
 import { StandardButton, StandardTextField, StandardTypography } from './MyComponents';
 import { AuthContext } from '../../context/AuthContext';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-
-const FarmerResetForm = () => {
-  const { farmerReset, authError } = useContext(AuthContext);
+const AdminLoginForm = () => {
+  const { adminReset, authError } = useContext(AuthContext);
   const [cpassword, setCpassword] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if(cpassword !== password) {
-        alert('Passwords do not match');
-      }else{
-        const resetMessage = farmerReset(password);
-        if(resetMessage === 'Password reset successfully') {
-          alert('Password reset successfully');
-        } else {
-          alert('Error resetting password');
-        }
+    if (cpassword !== password) {
+      toast.error('Passwords do not match', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } else {
+      const resetMessage = await adminReset(password);
+      if (resetMessage === 'Password reset successfully') {
+        toast.success('Password reset successfully', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      } else {
+        toast.error('Error resetting password', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
     }
   };
 
@@ -31,13 +56,14 @@ const FarmerResetForm = () => {
           <StandardTextField type="password" label="Password" value={password} onChange={(e) => setPassword(e.target.value)} required={true}/>
         </div>
         <div>
-          <StandardTextField type="password" label="Confirn Password" value={cpassword} onChange={(e) => setCpassword(e.target.value)}  required={true} />
+          <StandardTextField type="password" label="Confirm Password" value={cpassword} onChange={(e) => setCpassword(e.target.value)} required={true} />
         </div>
         {authError && <p>{authError}</p>}
         <StandardButton type="submit" color="success">Reset</StandardButton>
       </form>
+      <ToastContainer />
     </div>
   );
 };
 
-export default FarmerResetForm;
+export default AdminLoginForm;

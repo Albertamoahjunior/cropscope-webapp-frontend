@@ -67,7 +67,7 @@ const adminReset = async (password) => {
 
 const farmerReset = async (password) => {
   try {
-    await axios.post(`${process.env.REACT_APP_API_URL}/admin/reset-password`, {
+    await axios.post(`${process.env.REACT_APP_API_URL}/farmer/reset-password`, {
       password,
     });
     return 'Password reset successfully';

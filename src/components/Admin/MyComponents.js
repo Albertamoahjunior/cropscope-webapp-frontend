@@ -55,8 +55,9 @@ export function StandardTextField(props) {
       value={props.value}
       onChange={props.onChange}
       required={props.required}
-      style={textFieldStyle}
+      style={ props.style ||textFieldStyle}
       type={props.type}
+      name={props.name}
     />
   );
 }
@@ -101,7 +102,7 @@ export function TextButton(props) {
   return (
     <Button
       variant="text" 
-      style= {buttonTextStyle}
+      style= {props.style || buttonTextStyle}
       type={props.type}
       onClick={props.onClick}
       color="success"

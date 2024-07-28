@@ -66,7 +66,7 @@ const AdminResetForm = () => {
         <StandardButton type="submit" color="success">Reset</StandardButton>
       </form>
       <div>
-        <TextButton href="/admin/login"/>
+        <TextButton href="/admin/login" mt="2rem"> go to Login</TextButton>
       </div>
       <ToastContainer />
     </div>

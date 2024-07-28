@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-//import { useNavigate } from'react-router-dom';
 import { StandardTypography } from './MyComponents';
 import FarmerCard from './FarmerCard';
 import './styles/AdminFarmersList.css';
@@ -10,11 +9,9 @@ const AdminFarmersList = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  //const navigate = useNavigate();
-
   useEffect(() => {
     const adminToken = localStorage.getItem('adminToken');
-    
+
     const fetchFarmers = async () => {
       try {
         const response = await axios.get(`${process.env.REACT_APP_API_URL}/admin/list-farmers`, {
@@ -37,7 +34,6 @@ const AdminFarmersList = () => {
   if (loading) {
     return <StandardTypography variant="h6">Loading...</StandardTypography>;
   }
-
 
   return (
     <div className="admin-farmers-list">

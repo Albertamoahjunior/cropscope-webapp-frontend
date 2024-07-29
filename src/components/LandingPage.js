@@ -49,7 +49,7 @@ const LandingPage = () => {
 
        <div>
 	      <StandardButton variant="contained" href="/admin/login" mt="2rem" >Login</StandardButton>
-      	<StandardButton variant="contained" href="/admin/signup" >Register</StandardButton>
+      	{/* <StandardButton variant="contained" href="/admin/signup" >Register</StandardButton> */}
 	  </div>
     </div>
 
